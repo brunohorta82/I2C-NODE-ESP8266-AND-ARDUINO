@@ -1,8 +1,6 @@
 /*
   I2C MODE MCU Master
   Pede 3 bytes ao Slave e imprime na consola.
-  criado a 28 Abril 2016
-  por Bruno Horta
  */
 /**
  * INCLUIR A Biblioteca Wire

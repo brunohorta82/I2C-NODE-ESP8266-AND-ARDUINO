@@ -1,9 +1,13 @@
-/*
-  I2C Arduino SLAVE
-  Envia 3 bytes sempre que o Master pede.
-  criado a 28 Abril 2016
-  por Bruno Horta
- */
+// Wire Master Reader
+// by Nicholas Zambetti <http://www.zambetti.com>
+
+// Demonstrates use of the Wire library
+// Reads data from an I2C/TWI slave device
+// Refer to the "Wire Slave Sender" example for use with this
+
+// Created 29 March 2006
+
+// This example code is in the public domain.
 /**
  * INCLUIR A Biblioteca Wire
  */
