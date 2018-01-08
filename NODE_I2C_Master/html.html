@@ -1,0 +1,49 @@
+<pre>
+<font color="#95a5a6">/*</font>
+<font color="#95a5a6"> &nbsp;I2C MODE MCU Master</font>
+<font color="#95a5a6"> &nbsp;Pede 3 bytes ao Slave e imprime na consola.</font>
+<font color="#95a5a6"> &nbsp;criado a 28 Abril 2016</font>
+<font color="#95a5a6"> &nbsp;por Bruno Horta</font>
+<font color="#95a5a6"> */</font>
+<font color="#95a5a6">/**</font>
+<font color="#95a5a6"> * INCLUIR A Biblioteca Wire</font>
+<font color="#95a5a6"> */</font>
+<font color="#5e6d03">#include</font> <font color="#434f54">&lt;</font><font color="#d35400">Wire</font><font color="#434f54">.</font><font color="#000000">h</font><font color="#434f54">&gt;</font>
+
+<font color="#5e6d03">#define</font> <font color="#000000">WIRE_SDA</font> <font color="#000000">4</font>
+<font color="#5e6d03">#define</font> <font color="#000000">WIRE_SCL</font> <font color="#000000">5</font>
+<font color="#5e6d03">#define</font> <font color="#000000">SLAVE_ONE</font> <font color="#000000">8</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#95a5a6">/*Inicia o I2C, a Biblioteca Wire para ESP, </font>
+<font color="#95a5a6"> &nbsp;&nbsp;* não permite Slave por isso apenas deixa especificar </font>
+<font color="#95a5a6"> &nbsp;&nbsp;* os pinos SDA e SCL.</font>
+<font color="#95a5a6"> &nbsp;&nbsp;* Caso não seja especificado nada fica por defeito </font>
+<font color="#95a5a6"> &nbsp;&nbsp;* os pinos 2 SCA e 14 SCL</font>
+<font color="#95a5a6"> &nbsp;&nbsp;*/</font>
+ &nbsp;<font color="#d35400">Wire</font><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">WIRE_SDA</font><font color="#434f54">,</font><font color="#000000">WIRE_SCL</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#95a5a6">/**</font>
+<font color="#95a5a6"> &nbsp;&nbsp;* Inicia a comunicação Serie</font>
+<font color="#95a5a6"> &nbsp;&nbsp;*/</font>
+ &nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font><font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
+
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;<font color="#434f54">//Pede 3 bytes ao Slave</font>
+ &nbsp;<font color="#d35400">Wire</font><font color="#434f54">.</font><font color="#d35400">requestFrom</font><font color="#000000">(</font><font color="#000000">SLAVE_ONE</font><font color="#434f54">,</font><font color="#000000">3</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;<font color="#95a5a6">/*Aguarda pelo fim da comunicação</font>
+<font color="#95a5a6"> &nbsp;&nbsp;* O ciclo while tambem protege da recepção de </font>
+<font color="#95a5a6"> &nbsp;&nbsp;* menos bytes</font>
+<font color="#95a5a6"> &nbsp;&nbsp;*/</font>
+ &nbsp;<font color="#5e6d03">while</font> <font color="#000000">(</font><font color="#d35400">Wire</font><font color="#434f54">.</font><font color="#d35400">available</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">)</font><font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#434f54">//lê os bytes como caracter</font>
+ &nbsp;&nbsp;&nbsp;<font color="#00979c">char</font> <font color="#000000">c</font> <font color="#434f54">=</font> <font color="#d35400">Wire</font><font color="#434f54">.</font><font color="#d35400">read</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#434f54">//Imprime na consola</font>
+ &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">print</font><font color="#000000">(</font><font color="#000000">c</font><font color="#000000">)</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#000000">}</font>
+ &nbsp;&nbsp;&nbsp;<font color="#434f54">//faz quebra de linha</font>
+ &nbsp;&nbsp;&nbsp;<b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">)</font><font color="#000000">;</font>
+
+<font color="#000000">}</font>
+
+</pre>
